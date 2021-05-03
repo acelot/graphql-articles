@@ -1,0 +1,5 @@
+type ProjectMutation
+
+extend type Mutation {
+    project: ProjectMutation!
+}

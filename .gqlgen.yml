@@ -1,0 +1,32 @@
+schema:
+  - ./api/**/*.graphql
+
+exec:
+  filename: internal/gql/runtime/generated.go
+  package: runtime
+
+model:
+  filename: internal/gql/model/generated.go
+  package: model
+
+resolver:
+  layout: follow-schema
+  dir: internal/gql/resolver
+  package: resolver
+  filename_template: "{name}.go"
+
+models:
+  Html:
+    model: github.com/99designs/gqlgen/graphql.String
+  PageNumber:
+    model: github.com/acelot/articles/internal/gql/model.PageNumber
+  PageSize:
+    model: github.com/acelot/articles/internal/gql/model.PageSize
+  Rfc3339Date:
+    model: github.com/acelot/articles/internal/gql/model.Rfc3339Date
+  UInt:
+    model: github.com/acelot/articles/internal/gql/model.UInt
+  Url:
+    model: github.com/acelot/articles/internal/gql/model.Url
+  Uuid:
+    model: github.com/acelot/articles/internal/gql/model.Uuid

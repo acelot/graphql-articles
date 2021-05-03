@@ -1,0 +1,21 @@
+extend type ArticleBlockMutation {
+    create(
+        input: ArticleBlockCreateInput!
+    ): ArticleBlockCreateResult! @goField(forceResolver: true)
+}
+
+input ArticleBlockCreateInput {
+    articleId: Uuid!
+    blockType: ArticleBlockTypeEnum!
+    sortRank: SortRankInput! @sortRankInput
+}
+
+type ArticleBlockCreateOk {
+    articleBlock: ArticleBlockInterface!
+}
+
+union ArticleBlockCreateResult =
+    | ArticleNotFoundProblem
+    | InvalidSortRankProblem
+    | InternalErrorProblem
+    | ArticleBlockCreateOk

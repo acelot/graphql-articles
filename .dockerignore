@@ -1,0 +1,6 @@
+.*
+migrations
+!.gqlgen.yml
+Dockerfile
+LICENSE
+README.md

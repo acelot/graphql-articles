@@ -1,0 +1,5 @@
+type TagMutation
+
+extend type Mutation {
+    tag: TagMutation!
+}

@@ -1,0 +1,5 @@
+type ArticleBlockQuery
+
+extend type Query {
+    articleBlock: ArticleBlockQuery!
+}

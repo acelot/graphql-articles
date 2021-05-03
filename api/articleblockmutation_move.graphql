@@ -1,0 +1,21 @@
+extend type ArticleBlockMutation {
+    move(input: ArticleBlockMoveInput!): ArticleBlockMoveResult! @goField(forceResolver: true)
+}
+
+input ArticleBlockMoveInput {
+    id: Uuid!
+    sortRank: SortRankInput! @sortRankInput
+    version: UInt!
+}
+
+type ArticleBlockMoveOk {
+    sortRank: String!
+    version: UInt!
+}
+
+union ArticleBlockMoveResult =
+    | ArticleBlockNotFoundProblem
+    | InvalidSortRankProblem
+    | VersionMismatchProblem
+    | InternalErrorProblem
+    | ArticleBlockMoveOk

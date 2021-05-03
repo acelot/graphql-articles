@@ -1,0 +1,7 @@
+interface VersionInterface {
+    version: UInt!
+}
+
+type VersionMismatchProblem implements ProblemInterface {
+    message: String!
+}

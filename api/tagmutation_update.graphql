@@ -1,0 +1,19 @@
+extend type TagMutation {
+    update(input: TagUpdateInput!): TagUpdateResult! @goField(forceResolver: true)
+}
+
+input TagUpdateInput {
+    id: Uuid!
+    name: String!
+    version: UInt!
+}
+
+type TagUpdateOk {
+    tag: Tag!
+}
+
+union TagUpdateResult =
+    | TagNotFoundProblem
+    | VersionMismatchProblem
+    | InternalErrorProblem
+    | TagUpdateOk

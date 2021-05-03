@@ -1,0 +1,16 @@
+extend type ArticleMutation {
+    create(input: ArticleCreateInput!): ArticleCreateResult! @goField(forceResolver: true)
+}
+
+input ArticleCreateInput {
+    projectId: Uuid!
+}
+
+type ArticleCreateOk {
+    article: Article!
+}
+
+union ArticleCreateResult =
+    | ProjectNotFoundProblem
+    | InternalErrorProblem
+    | ArticleCreateOk

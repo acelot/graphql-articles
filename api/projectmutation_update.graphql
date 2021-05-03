@@ -1,0 +1,19 @@
+extend type ProjectMutation {
+    update(input: ProjectUpdateInput!): ProjectUpdateResult! @goField(forceResolver: true)
+}
+
+input ProjectUpdateInput {
+    id: Uuid!
+    name: String!
+    version: UInt!
+}
+
+type ProjectUpdateOk {
+    project: Project!
+}
+
+union ProjectUpdateResult =
+    | ProjectNotFoundProblem
+    | VersionMismatchProblem
+    | InternalErrorProblem
+    | ProjectUpdateOk

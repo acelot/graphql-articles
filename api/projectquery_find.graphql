@@ -1,0 +1,28 @@
+extend type ProjectQuery {
+    find(
+        filter: ProjectFindFilterInput
+        sort: ProjectFindSortEnum! = NAME_ASC
+        pageSize: PageSize! = 10
+        pageNumber: PageNumber! = 1
+    ): ProjectFindResult! @goField(forceResolver: true)
+}
+
+enum ProjectFindSortEnum {
+    NAME_ASC
+    NAME_DESC
+    CREATED_AT_ASC
+    CREATED_AT_DESC
+}
+
+input ProjectFindFilterInput {
+    idAnyOf: [Uuid!]
+}
+
+type ProjectFindList {
+    items: [Project!]!
+    totalCount: TotalCountResolvingResult! @goField(forceResolver: true)
+}
+
+union ProjectFindResult =
+    | ProjectFindList
+    | InternalErrorProblem

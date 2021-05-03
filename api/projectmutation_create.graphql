@@ -1,0 +1,20 @@
+extend type ProjectMutation {
+    create(input: ProjectCreateInput!): ProjectCreateResult! @goField(forceResolver: true)
+}
+
+input ProjectCreateInput {
+    name: String!
+}
+
+type ProjectAlreadyExistsProblem implements ProblemInterface {
+    message: String!
+}
+
+type ProjectCreateOk {
+    project: Project!
+}
+
+union ProjectCreateResult =
+    | ProjectAlreadyExistsProblem
+    | InternalErrorProblem
+    | ProjectCreateOk

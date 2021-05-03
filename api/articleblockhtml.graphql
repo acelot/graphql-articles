@@ -1,0 +1,17 @@
+type ArticleBlockHtml implements ArticleBlockInterface & VersionInterface {
+    createdAt: Rfc3339Date!
+    data: ArticleBlockHtmlData!
+    deletedAt: Rfc3339Date
+    id: Uuid!
+    modifiedAt: Rfc3339Date!
+    sortRank: String!
+    version: UInt!
+}
+
+type ArticleBlockHtmlData {
+    body: Html!
+}
+
+input ArticleBlockHtmlDataInput {
+    body: Html!
+}

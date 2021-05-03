@@ -1,0 +1,18 @@
+type ArticleTag implements VersionInterface {
+    articleID: Uuid!
+    createdAt: Rfc3339Date!
+    id: Uuid!
+    modifiedAt: Rfc3339Date!
+    sortRank: String!
+    tag: TagResolvingResult! @goField(forceResolver: true)
+    tagId: Uuid!
+    version: UInt!
+}
+
+type ArticleTagList {
+    items: [ArticleTag!]!
+}
+
+type ArticleTagNotFoundProblem implements ProblemInterface {
+    message: String!
+}

@@ -1,0 +1,7 @@
+interface ProblemInterface {
+    message: String!
+}
+
+type InternalErrorProblem implements ProblemInterface {
+    message: String!
+}

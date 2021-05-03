@@ -1,0 +1,5 @@
+type ImageMutation
+
+extend type Mutation {
+    image: ImageMutation!
+}

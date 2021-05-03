@@ -1,0 +1,30 @@
+extend type ArticleBlockQuery {
+    find(
+        filter: ArticleBlockFindFilterInput
+        sort: ArticleBlockFindSortEnum! = SORT_RANK_ASC
+        pageSize: PageSize! = 10
+        pageNumber: PageNumber! = 1
+    ): ArticleBlockFindResult! @goField(forceResolver: true)
+}
+
+enum ArticleBlockFindSortEnum {
+    CREATED_AT_ASC
+    CREATED_AT_DESC
+    SORT_RANK_ASC
+    SORT_RANK_DESC
+}
+
+input ArticleBlockFindFilterInput {
+    articleIdAnyOf: [Uuid!]
+    idAnyOf: [Uuid!]
+    typeAnyOf: [ArticleBlockTypeEnum!]
+}
+
+type ArticleBlockFindList {
+    items: [ArticleBlockInterface!]!
+    totalCount(estimate: UInt! = 10000): TotalCountResolvingResult! @goField(forceResolver: true)
+}
+
+union ArticleBlockFindResult =
+    | ArticleBlockFindList
+    | InternalErrorProblem

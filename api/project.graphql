@@ -1,0 +1,17 @@
+type Project implements VersionInterface {
+    createdAt: Rfc3339Date!
+    deletedAt: Rfc3339Date
+    id: Uuid!
+    modifiedAt: Rfc3339Date!
+    name: String!
+    version: UInt!
+}
+
+type ProjectNotFoundProblem implements ProblemInterface {
+    message: String!
+}
+
+union ProjectResolvingResult =
+    | Project
+    | ProjectNotFoundProblem
+    | InternalErrorProblem

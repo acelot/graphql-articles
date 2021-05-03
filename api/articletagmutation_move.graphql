@@ -1,0 +1,21 @@
+extend type ArticleTagMutation {
+    move(input: ArticleTagMoveInput!): ArticleTagMoveResult! @goField(forceResolver: true)
+}
+
+input ArticleTagMoveInput {
+    id: Uuid!
+    sortRank: SortRankInput! @sortRankInput
+    version: UInt!
+}
+
+type ArticleTagMoveOk {
+    sortRank: String!
+    version: UInt!
+}
+
+union ArticleTagMoveResult =
+    | ArticleTagNotFoundProblem
+    | InvalidSortRankProblem
+    | VersionMismatchProblem
+    | InternalErrorProblem
+    | ArticleTagMoveOk

@@ -1,0 +1,25 @@
+extend type ArticleTagMutation {
+    create(input: ArticleTagCreateInput!): ArticleTagCreateResult! @goField(forceResolver: true)
+}
+
+input ArticleTagCreateInput {
+    articleId: Uuid!
+    tagId: Uuid!
+    sortRank: SortRankInput! @sortRankInput
+}
+
+type ArticleTagAlreadyExistsProblem implements ProblemInterface {
+    message: String!
+}
+
+type ArticleTagCreateOk {
+    articleTag: ArticleTag!
+}
+
+union ArticleTagCreateResult =
+    | ArticleNotFoundProblem
+    | TagNotFoundProblem
+    | ArticleTagAlreadyExistsProblem
+    | InvalidSortRankProblem
+    | InternalErrorProblem
+    | ArticleTagCreateOk

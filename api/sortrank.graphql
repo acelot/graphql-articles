@@ -1,0 +1,8 @@
+input SortRankInput {
+    prev: String! = "0"
+    next: String! = "z"
+}
+
+type InvalidSortRankProblem implements ProblemInterface {
+    message: String!
+}

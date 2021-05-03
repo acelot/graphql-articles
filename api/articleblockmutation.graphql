@@ -1,0 +1,5 @@
+type ArticleBlockMutation
+
+extend type Mutation {
+    articleBlock: ArticleBlockMutation!
+}

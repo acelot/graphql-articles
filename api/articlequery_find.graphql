@@ -1,0 +1,26 @@
+extend type ArticleQuery {
+    find(
+        filter: ArticleFindFilterInput
+        sort: ArticleFindSortEnum! = CREATED_AT_ASC
+        pageSize: PageSize! = 10
+        pageNumber: PageNumber! = 1
+    ): ArticleFindResult! @goField(forceResolver: true)
+}
+
+enum ArticleFindSortEnum {
+    CREATED_AT_ASC
+    CREATED_AT_DESC
+}
+
+input ArticleFindFilterInput {
+    idAnyOf: [Uuid!]
+}
+
+type ArticleFindList {
+    items: [Article!]!
+    totalCount(estimate: UInt! = 10000): TotalCountResolvingResult! @goField(forceResolver: true)
+}
+
+union ArticleFindResult =
+    | ArticleFindList
+    | InternalErrorProblem

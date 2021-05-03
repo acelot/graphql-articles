@@ -1,0 +1,20 @@
+extend type TagMutation {
+    create(input: TagCreateInput!): TagCreateResult! @goField(forceResolver: true)
+}
+
+input TagCreateInput {
+    name: String!
+}
+
+type TagAlreadyExistsProblem implements ProblemInterface {
+    message: String!
+}
+
+type TagCreateOk {
+    tag: Tag!
+}
+
+union TagCreateResult =
+    | TagAlreadyExistsProblem
+    | InternalErrorProblem
+    | TagCreateOk

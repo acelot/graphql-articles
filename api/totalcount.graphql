@@ -1,0 +1,7 @@
+type TotalCount {
+    value: UInt!
+}
+
+union TotalCountResolvingResult =
+    | TotalCount
+    | InternalErrorProblem

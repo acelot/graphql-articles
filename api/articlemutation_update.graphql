@@ -1,0 +1,22 @@
+extend type ArticleMutation {
+    update(
+        input: ArticleUpdateInput!
+    ): ArticleUpdateResult! @goField(forceResolver: true)
+}
+
+input ArticleUpdateInput {
+    id: Uuid!
+    coverImageId: Uuid
+    title: String!
+    version: UInt!
+}
+
+type ArticleUpdateOk {
+    article: Article!
+}
+
+union ArticleUpdateResult =
+    | ArticleNotFoundProblem
+    | VersionMismatchProblem
+    | InternalErrorProblem
+    | ArticleUpdateOk

@@ -1,0 +1,5 @@
+type ImageQuery
+
+extend type Query {
+    image: ImageQuery!
+}

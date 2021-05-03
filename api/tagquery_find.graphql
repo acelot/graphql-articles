@@ -1,0 +1,28 @@
+extend type TagQuery {
+    find(
+        filter: TagFindFilterInput
+        sort: TagFindSortEnum! = NAME_ASC
+        pageSize: PageSize! = 10
+        pageNumber: PageNumber! = 1
+    ): TagFindResult! @goField(forceResolver: true)
+}
+
+enum TagFindSortEnum {
+    NAME_ASC
+    NAME_DESC
+    CREATED_AT_ASC
+    CREATED_AT_DESC
+}
+
+input TagFindFilterInput {
+    idAnyOf: [Uuid!]
+}
+
+type TagFindList {
+    items: [Tag!]!
+    totalCount(estimate: UInt! = 10000): TotalCountResolvingResult! @goField(forceResolver: true)
+}
+
+union TagFindResult =
+    | TagFindList
+    | InternalErrorProblem

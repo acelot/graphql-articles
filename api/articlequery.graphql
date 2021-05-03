@@ -1,0 +1,5 @@
+type ArticleQuery
+
+extend type Query {
+    article: ArticleQuery!
+}

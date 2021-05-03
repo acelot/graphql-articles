@@ -1,0 +1,16 @@
+interface ArticleBlockInterface {
+    createdAt: Rfc3339Date!
+    deletedAt: Rfc3339Date
+    id: Uuid!
+    modifiedAt: Rfc3339Date!
+    sortRank: String!
+}
+
+type ArticleBlockNotFoundProblem implements ProblemInterface {
+    message: String!
+}
+
+enum ArticleBlockTypeEnum {
+    HTML
+    IMAGE
+}

@@ -1,0 +1,53 @@
+type Image implements VersionInterface {
+    assets: [ImageAsset!]! @goField(forceResolver: true)
+    createdAt: Rfc3339Date!
+    deletedAt: Rfc3339Date
+    type: String!
+    height: UInt!
+    id: Uuid!
+    modifiedAt: Rfc3339Date!
+    download: ImageDownloadResolvingResult! @goField(forceResolver: true)
+    version: UInt!
+    width: UInt!
+}
+
+type ImageAsset {
+    format: ImageAssetFormat!
+    width: ImageAssetWidth!
+    url: Url!
+}
+
+type ImageDownload {
+    url: Url!
+}
+
+type ImageNotFoundProblem implements ProblemInterface {
+    message: String!
+}
+
+union ImageResolvingResult =
+    | Image
+    | ImageNotFoundProblem
+    | InternalErrorProblem
+
+union ImageDownloadResolvingResult =
+    | ImageDownload
+    | InternalErrorProblem
+
+enum ImageAssetFormat {
+    AVIF
+    JPEG
+    PNG
+    WEBP
+}
+
+enum ImageAssetWidth {
+    W320
+    W768
+    W1024
+    W1280
+    W1366
+    W1600
+    W1920
+    W2560
+}

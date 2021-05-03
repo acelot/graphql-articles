@@ -1,0 +1,5 @@
+type ArticleMutation
+
+extend type Mutation {
+    article: ArticleMutation!
+}

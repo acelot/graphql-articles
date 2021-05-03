@@ -1,0 +1,29 @@
+extend type ArticleBlockMutation {
+    update(input: ArticleBlockUpdateInput!): ArticleBlockUpdateResult! @goField(forceResolver: true)
+}
+
+input ArticleBlockUpdateInput {
+    id: Uuid!
+    data: ArticleBlockDataInput! @inputUnion
+    version: UInt!
+}
+
+input ArticleBlockDataInput {
+    html: ArticleBlockHtmlDataInput
+    image: ArticleBlockImageDataInput
+}
+
+type ArticleBlockUpdateOk {
+    articleBlock: ArticleBlockInterface!
+}
+
+type ArticleBlockTypeMismatchProblem implements ProblemInterface {
+    message: String!
+}
+
+union ArticleBlockUpdateResult =
+    | ArticleBlockNotFoundProblem
+    | ArticleBlockTypeMismatchProblem
+    | VersionMismatchProblem
+    | InternalErrorProblem
+    | ArticleBlockUpdateOk

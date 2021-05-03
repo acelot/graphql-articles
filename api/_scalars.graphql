@@ -1,0 +1,8 @@
+scalar Html
+scalar PageNumber
+scalar PageSize
+scalar Rfc3339Date
+scalar UInt
+scalar Upload
+scalar Url
+scalar Uuid

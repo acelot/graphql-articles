@@ -1,0 +1,30 @@
+type Article implements VersionInterface {
+    content: ArticleContentResolvingResult! @goField(forceResolver: true)
+    coverImage: ImageResolvingResult! @goField(forceResolver: true)
+    coverImageId: Uuid
+    createdAt: Rfc3339Date!
+    deletedAt: Rfc3339Date
+    id: Uuid!
+    modifiedAt: Rfc3339Date!
+    project: ProjectResolvingResult! @goField(forceResolver: true)
+    projectId: Uuid!
+    tags: ArticleTagsResolvingResult! @goField(forceResolver: true)
+    title: String!
+    version: UInt!
+}
+
+type ArticleContent {
+    blocks: [ArticleBlockInterface!]!
+}
+
+type ArticleNotFoundProblem implements ProblemInterface {
+    message: String!
+}
+
+union ArticleContentResolvingResult =
+    | ArticleContent
+    | InternalErrorProblem
+
+union ArticleTagsResolvingResult =
+    | ArticleTagList
+    | InternalErrorProblem

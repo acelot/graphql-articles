@@ -1,0 +1,5 @@
+type TagQuery
+
+extend type Query {
+    tag: TagQuery!
+}

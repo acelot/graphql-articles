@@ -1,0 +1,26 @@
+extend type ImageQuery {
+    find(
+        filter: ImageFindFilterInput
+        sort: ImageFindSortEnum! = CREATED_AT_ASC
+        pageSize: PageSize! = 10
+        pageNumber: PageNumber! = 1
+    ): ImageFindResult! @goField(forceResolver: true)
+}
+
+enum ImageFindSortEnum {
+    CREATED_AT_ASC
+    CREATED_AT_DESC
+}
+
+input ImageFindFilterInput {
+    idAnyOf: [Uuid!]
+}
+
+type ImageFindList {
+    items: [Image!]!
+    totalCount(estimate: UInt! = 10000): TotalCountResolvingResult! @goField(forceResolver: true)
+}
+
+union ImageFindResult =
+    | ImageFindList
+    | InternalErrorProblem

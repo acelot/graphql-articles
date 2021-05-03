@@ -1,0 +1,22 @@
+type ArticleBlockImage implements ArticleBlockInterface & VersionInterface {
+    createdAt: Rfc3339Date!
+    data: ArticleBlockImageData!
+    deletedAt: Rfc3339Date
+    id: Uuid!
+    modifiedAt: Rfc3339Date!
+    sortRank: String!
+    version: UInt!
+}
+
+type ArticleBlockImageData {
+    image: ImageResolvingResult! @goField(forceResolver: true)
+    imageId: Uuid
+    copyright: String
+    description: Html
+}
+
+input ArticleBlockImageDataInput {
+    imageId: Uuid
+    copyright: String
+    description: Html
+}

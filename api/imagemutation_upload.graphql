@@ -1,0 +1,25 @@
+extend type ImageMutation {
+    upload(input: ImageUploadInput!): ImageUploadResult! @goField(forceResolver: true)
+}
+
+input ImageUploadInput {
+    file: Upload
+}
+
+type ImageNotSupportedTypeProblem implements ProblemInterface {
+    message: String!
+}
+
+type ImageNotRecognizedProblem implements ProblemInterface {
+    message: String!
+}
+
+type ImageUploadOk {
+    image: Image!
+}
+
+union ImageUploadResult =
+    | ImageNotSupportedTypeProblem
+    | ImageNotRecognizedProblem
+    | InternalErrorProblem
+    | ImageUploadOk
